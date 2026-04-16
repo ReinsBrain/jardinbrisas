@@ -1,317 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jardín Brisas</title>
-  <style>
-    /* ── Reset & base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      color: #2d2d2d;
-      line-height: 1.6;
-    }
-
-    /* ── Colour palette ── */
-    :root {
-      --green-dark:  #1b5e20;
-      --green-mid:   #388e3c;
-      --green-light: #a5d6a7;
-      --cream:       #f9f6f0;
-      --white:       #ffffff;
-      --text-light:  #f1f8e9;
-    }
-
-    /* ── Navigation ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 2rem;
-      background: rgba(27, 94, 32, 0.95);
-      backdrop-filter: blur(6px);
-    }
-    .nav-logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text-light);
-      letter-spacing: 1px;
-      text-decoration: none;
-    }
-    .nav-links { list-style: none; display: flex; gap: 1.5rem; }
-    .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--green-light); }
-
-    /* ── Hero ── */
-    #inicio {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: linear-gradient(160deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-light) 100%);
-      color: var(--white);
-    }
-    #inicio h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.15;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-    #inicio p {
-      margin-top: 1rem;
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      max-width: 540px;
-      opacity: 0.9;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.85rem 2.2rem;
-      background: var(--white);
-      color: var(--green-dark);
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
-
-    /* ── Sections shared ── */
-    section { padding: 5rem 2rem; }
-    .container { max-width: 1000px; margin: 0 auto; }
-    .section-title {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 700;
-      color: var(--green-dark);
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    .section-subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 3rem;
-    }
-
-    /* ── Nosotros ── */
-    #nosotros { background: var(--cream); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .about-text p { margin-bottom: 1rem; color: #444; }
-    .about-visual {
-      background: linear-gradient(135deg, var(--green-mid), var(--green-light));
-      border-radius: 16px;
-      height: 280px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 6rem;
-    }
-
-    /* ── Servicios ── */
-    #servicios { background: var(--white); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-    .service-card {
-      background: var(--cream);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      border-top: 4px solid var(--green-mid);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .service-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-    .service-card h3 { font-size: 1.1rem; color: var(--green-dark); margin-bottom: 0.5rem; }
-    .service-card p { font-size: 0.9rem; color: #555; }
-
-    /* ── Contacto ── */
-    #contacto { background: var(--cream); }
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .contact-info p { margin-bottom: 0.75rem; color: #444; }
-    .contact-info strong { color: var(--green-dark); }
-    form { display: flex; flex-direction: column; gap: 0.5rem; }
-    form label { font-size: 0.85rem; font-weight: 600; color: var(--green-dark); margin-top: 0.5rem; }
-    form input, form textarea {
-      padding: 0.75rem 1rem;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      transition: border-color 0.2s;
-    }
-    form input:focus, form textarea:focus {
-      outline: none;
-      border-color: var(--green-mid);
-    }
-    form textarea { resize: vertical; min-height: 120px; }
-    form button {
-      padding: 0.85rem;
-      background: var(--green-dark);
-      color: var(--white);
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-    }
-    form button:hover { background: var(--green-mid); transform: translateY(-2px); }
-
-    /* ── Footer ── */
-    footer {
-      background: var(--green-dark);
-      color: var(--text-light);
-      text-align: center;
-      padding: 1.5rem 2rem;
-      font-size: 0.85rem;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 680px) {
-      .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
-      .about-visual { height: 180px; }
-      .nav-links { gap: 1rem; font-size: 0.85rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardín Brisas | Paisajismo de Élite en Brisas de Villa</title>
+    <meta name="description" content="Expertos en jardinería, poda y mantenimiento de áreas verdes en Parque Agua Mariana y Brisas de Villa. Resultados profesionales.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav>
-    <a href="#inicio" class="nav-logo">🌿 Jardín Brisas</a>
-    <ul class="nav-links">
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero -->
-  <section id="inicio">
-    <h1>Tu jardín,<br>nuestro arte</h1>
-    <p>Diseño, mantenimiento y paisajismo para espacios verdes que inspiran.</p>
-    <a href="#servicios" class="btn">Ver servicios</a>
-  </section>
-
-  <!-- About -->
-  <section id="nosotros">
-    <div class="container">
-      <h2 class="section-title">Quiénes somos</h2>
-      <p class="section-subtitle">Pasión por la naturaleza desde 2010</p>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>En <strong>Jardín Brisas</strong> transformamos espacios al aire libre en refugios de tranquilidad y belleza. Con más de 16 años de experiencia, nuestro equipo de paisajistas y jardineros trabaja con dedicación para que cada rincón verde florezca.</p>
-          <p>Combinamos técnicas tradicionales con materiales sostenibles para crear jardines que armonizan con el entorno y requieren el mínimo mantenimiento posible.</p>
-        </div>
-        <div class="about-visual">🌳</div>
-      </div>
+    <div id="preloader">
+        <div class="loader-leaf"></div>
     </div>
-  </section>
 
-  <!-- Services -->
-  <section id="servicios">
-    <div class="container">
-      <h2 class="section-title">Nuestros servicios</h2>
-      <p class="section-subtitle">Soluciones para cada espacio verde</p>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">✂️</div>
-          <h3>Mantenimiento</h3>
-          <p>Poda, riego, abonado y cuidado continuo de tu jardín durante todo el año.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🎨</div>
-          <h3>Diseño paisajístico</h3>
-          <p>Creamos proyectos a medida que combinan plantas, piedras y agua.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🌱</div>
-          <h3>Plantación</h3>
-          <p>Selección y plantación de especies adaptadas a tu clima y suelo.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">💧</div>
-          <h3>Sistemas de riego</h3>
-          <p>Instalación de riego automático eficiente para ahorrar agua y tiempo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <header id="header-container"></header>
 
-  <!-- Contact -->
-  <section id="contacto">
-    <div class="container">
-      <h2 class="section-title">Contáctanos</h2>
-      <p class="section-subtitle">Cuéntanos tu proyecto y te damos presupuesto sin compromiso</p>
-      <div class="contact-wrapper">
-        <div class="contact-info">
-          <p>📍 <strong>Ubicación:</strong> Jardín Brisas, España</p>
-          <p>📞 <strong>Teléfono:</strong> +34 600 000 000</p>
-          <p>✉️ <strong>Email:</strong> info@jardinbrisas.es</p>
-          <p>🕐 <strong>Horario:</strong> Lunes – Viernes, 8:00 – 18:00</p>
-        </div>
-        <form onsubmit="handleSubmit(event)" aria-label="Formulario de contacto">
-          <label for="nombre">Tu nombre</label>
-          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-          <label for="email">Tu email</label>
-          <input type="email" id="email" name="email" placeholder="Tu email" required />
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos tu proyecto…" required></textarea>
-          <button type="submit">Enviar mensaje</button>
-        </form>
-      </div>
-    </div>
-  </section>
+    <main>
+        <section class="hero">
+            <div class="hero__carousel" id="hero-slider">
+                <div class="hero__slide active" style="background-image: linear-gradient(rgba(26, 54, 38, 0.7), rgba(26, 54, 38, 0.7)), url('https://images.unsplash.com/photo-1558904541-efa843a96f0f?auto=format&fit=crop&q=80');">
+                    <div class="hero__content container reveal">
+                        <h1>Dominamos la naturaleza, <br><span>respetamos su esencia.</span></h1>
+                        <p>Diseño y mantenimiento de áreas verdes con calidad de élite en Brisas de Villa.</p>
+                        <a href="#experiencia" class="btn btn--secondary">Descubre nuestro trabajo</a>
+                    </div>
+                </div>
+                <div class="hero__slide" style="background-image: linear-gradient(rgba(26, 54, 38, 0.6), rgba(26, 54, 38, 0.8)), url('https://images.unsplash.com/photo-1416879598553-3cb00cb105fc?auto=format&fit=crop&q=80');">
+                    <div class="hero__content container">
+                        <h1>Tu jardín en manos <br><span>de profesionales.</span></h1>
+                        <p>Soluciones integrales de paisajismo para residencias exigentes.</p>
+                        <a href="#contacto" class="btn btn--secondary">Cotizar proyecto</a>
+                    </div>
+                </div>
+            </div>
+            <button class="hero__control hero__control--prev" id="prev-slide">&#10094;</button>
+            <button class="hero__control hero__control--next" id="next-slide">&#10095;</button>
+        </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; <span id="year"></span> Jardín Brisas. Todos los derechos reservados.</p>
-  </footer>
+        <section id="experiencia" class="about section container reveal">
+            <div class="about__grid">
+                <div class="about__text">
+                    <span class="badge">Nuestra Trayectoria</span>
+                    <h2>Especialistas en el ecosistema de Chorrillos</h2>
+                    <p>En <strong>Jardín Brisas</strong>, no solo cortamos pasto; entendemos el suelo, la humedad de los Pantanos de Villa y la brisa salina. Contamos con experiencia comprobada transformando y manteniendo las áreas verdes del <strong>Parque Agua Mariana</strong> y residencias aledañas.</p>
+                    <p>Utilizamos técnicas modernas y herramientas de precisión para asegurar que cada planta alcance su máximo potencial sin alterar el equilibrio ambiental.</p>
+                </div>
+                <div class="about__stats">
+                    <div class="stat-card">
+                        <h3>100%</h3>
+                        <p>Compromiso Ecológico</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>+50</h3>
+                        <p>Proyectos en la zona</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+        <section class="values section bg-light">
+            <div class="container">
+                <h2 class="text-center reveal">Por qué elegir a la élite</h2>
+                <div class="values__grid reveal">
+                    <div class="value-card">
+                        <div class="value-icon">⏱️</div>
+                        <h3>Puntualidad Táctica</h3>
+                        <p>Respetamos tu tiempo. Llegamos a la hora acordada y optimizamos cada minuto de trabajo.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🔬</div>
+                        <h3>Conocimiento Técnico</h3>
+                        <p>Entendemos de PH del suelo, fertilización y ciclos de riego específicos para la costa.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">💎</div>
+                        <h3>Acabados de Primera</h3>
+                        <p>Cortes simétricos, limpieza absoluta post-servicio y un impacto visual inmediato.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = '¡Mensaje enviado! ✓';
-      btn.disabled = true;
-      btn.style.background = '#388e3c';
-      setTimeout(() => {
-        btn.textContent = 'Enviar mensaje';
-        btn.disabled = false;
-        btn.style.background = '';
-        e.target.reset();
-      }, 3000);
-    }
-  </script>
+        <section class="tips section container">
+            <div class="section-header reveal">
+                <h2>El Blog del Jardinero</h2>
+                <p>Consejos rápidos para mantener tu jardín vivo frente a la brisa marina.</p>
+            </div>
+            <div class="tips__grid reveal">
+                <article class="tip-card">
+                    <div class="tip-card__media">
+                        <img src="https://images.unsplash.com/photo-1416879598553-3cb00cb105fc?auto=format&fit=crop&w=500&q=80" alt="Regar plantas">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="tip-card__body">
+                        <h3>¿Cómo y cuándo regar?</h3>
+                        <p>El exceso de agua en zonas húmedas es letal. Aprende el ciclo correcto.</p>
+                        <a href="#" class="link-arrow">Ver video</a>
+                    </div>
+                </article>
+                <article class="tip-card">
+                    <div class="tip-card__media">
+                        <img src="https://images.unsplash.com/photo-1558904541-efa843a96f0f?auto=format&fit=crop&w=500&q=80" alt="Poda correcta">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="tip-card__body">
+                        <h3>El arte de la poda estética</h3>
+                        <p>No cortes por cortar. Estimula el crecimiento de tus arbustos con esta técnica.</p>
+                        <a href="#" class="link-arrow">Ver video</a>
+                    </div>
+                </article>
+                <article class="tip-card">
+                    <div class="tip-card__media">
+                        <img src="https://images.unsplash.com/photo-1592424001809-5a1e80ea42ba?auto=format&fit=crop&w=500&q=80" alt="Abono orgánico">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="tip-card__body">
+                        <h3>Abono para suelo arenoso</h3>
+                        <p>El secreto para nutrir la tierra de Brisas de Villa y potenciar el verdor.</p>
+                        <a href="#" class="link-arrow">Ver video</a>
+                    </div>
+                </article>
+            </div>
+        </section>
 
+        <section class="location section">
+            <div class="container reveal">
+                <h2 class="text-center">Nuestra Zona de Operaciones</h2>
+                <p class="text-center mb-4">Ubicados estratégicamente en Brisas de Villa, operamos en todo el perímetro del Parque Agua Mariana.</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15594.398939498144!2d-76.0028!3d-12.2081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b9b9!2sBrisas%20de%20Villa%2C%20Chorrillos!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="js/app.js"></script>
 </body>
 </html>

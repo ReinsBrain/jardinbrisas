@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Jardín Brisas - Consultoría Paisajista</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader-leaf"></div>
+    </div>
+
+    <header id="header-container"></header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="container reveal">
+                <h1>Hablemos de tu <br><span>próximo oasis.</span></h1>
+                <p>Ubicados en el corazón de Brisas de Villa, estamos listos para transformar tu entorno.</p>
+            </div>
+        </section>
+
+        <section class="contact-main container section">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <div>
+                            <h3>Nuestra Base</h3>
+                            <p>Parque Agua Mariana, Brisas de Villa<br>Chorrillos, Lima - Perú.</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📞</span>
+                        <div>
+                            <h3>Llamada Directa</h3>
+                            <p>+51 999 999 999</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">✉️</span>
+                        <div>
+                            <h3>Escríbenos</h3>
+                            <p>proyectos@jardinbrisas.pro</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-proof">
+                        <p><strong>Horario de Atención:</strong><br>Lunes a Sábado: 7:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper reveal">
+                    <form class="contact-form" id="form-contacto">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">Servicio de Interés</label>
+                            <select id="servicio" name="servicio">
+                                <option value="mantenimiento">Mantenimiento Periódico</option>
+                                <option value="paisajismo">Diseño de Paisajismo</option>
+                                <option value="riego">Sistemas de Riego</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Cuéntanos sobre tu espacio</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Dimensiones aproximadas, ubicación, visión..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--block">Solicitar Visita Técnica</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

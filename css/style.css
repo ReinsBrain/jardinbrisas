@@ -178,3 +178,42 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
     .contact-grid { grid-template-columns: 1fr; }
     .contact-form-wrapper { padding: 1.5rem; }
 }
+
+
+/* ================= TOPBAR ================= */
+.topbar { background: var(--color-dark-swamp); color: #a0aab2; font-size: 0.85rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.topbar__content { display: flex; justify-content: space-between; align-items: center; width: 90%; max-width: 1200px; margin: 0 auto; }
+.topbar__info { display: flex; gap: 1.5rem; }
+.topbar__social a { color: #a0aab2; text-decoration: none; margin-left: 10px; transition: var(--transition-fast); }
+.topbar__social a:hover { color: var(--color-leaf); }
+
+/* Ajuste del Navbar para que respete el Topbar */
+.navbar { top: 35px; } /* Empuja el navbar hacia abajo */
+
+/* ================= DROPDOWN (Menú Desplegable) ================= */
+.dropdown { position: relative; }
+.dropdown-menu { position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 8px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; list-style: none; padding: 0.5rem 0; z-index: 1000; border-top: 3px solid var(--color-leaf); }
+.dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu li a { display: block; padding: 0.8rem 1.5rem; color: var(--color-text); font-weight: 500; border-bottom: 1px solid #f0f0f0; }
+.dropdown-menu li:last-child a { border-bottom: none; }
+.dropdown-menu li a:hover { background: var(--color-light); color: var(--color-leaf); padding-left: 2rem; }
+
+/* ================= METODOLOGÍA (Workflow) ================= */
+.workflow__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.workflow-card { background: white; padding: 2.5rem 1.5rem; border-radius: 15px; text-align: center; position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: var(--transition-smooth); border: 1px solid #f0f0f0; }
+.workflow-card:hover { transform: translateY(-10px); border-color: var(--color-leaf); box-shadow: 0 15px 30px rgba(46, 160, 83, 0.1); }
+.workflow-icon { font-size: 3rem; margin-bottom: 1rem; }
+.workflow-step { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--color-leaf); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px; }
+
+/* ================= WHATSAPP FLOTANTE ================= */
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; transition: var(--transition-fast); animation: bounce-wa 2s infinite ease-in-out; }
+.whatsapp-float:hover { transform: scale(1.1); background-color: #1ebe5d; }
+@keyframes bounce-wa { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* ================= RESPONSIVE AJUSTES ================= */
+@media (max-width: 768px) {
+    .hide-mobile { display: none; }
+    .navbar { top: 0; } /* En móviles el topbar puede desaparecer al scrollear o pegarse */
+    .dropdown-menu { position: static; box-shadow: none; border: none; opacity: 1; visibility: visible; transform: none; display: none; padding-left: 1rem; }
+    .dropdown:hover .dropdown-menu { display: block; }
+}

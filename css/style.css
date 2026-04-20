@@ -217,3 +217,59 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
     .dropdown-menu { position: static; box-shadow: none; border: none; opacity: 1; visibility: visible; transform: none; display: none; padding-left: 1rem; }
     .dropdown:hover .dropdown-menu { display: block; }
 }
+
+
+
+/* Correcciones del Topbar */
+.topbar__info { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+.topbar-item { display: flex; align-items: center; gap: 6px; }
+.topbar__social { display: flex; gap: 12px; align-items: center; }
+
+/* Inyección de Vida (Animación de la Brisa) */
+@keyframes sway {
+    0% { transform: rotate(0deg) translateX(0px); }
+    50% { transform: rotate(8deg) translateX(10px); }
+    100% { transform: rotate(0deg) translateX(0px); }
+}
+
+/* Modificamos el fondo claro para quitar el "exceso de blanco" */
+.bg-light { 
+    position: relative; 
+    background-color: #f2f7f4; /* Un tono muy sutil de verde grisáceo claro */
+    overflow: hidden; 
+    z-index: 1;
+}
+
+/* Hoja decorativa gigante animada en el fondo (Opacidad muy baja) */
+.bg-light::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232EA053' opacity='0.03'%3E%3Cpath d='M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.96.3 1.34.3C12 20 19 14 20 8h-3z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: sway 7s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-light::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 300px;
+    height: 300px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231A3626' opacity='0.02'%3E%3Cpath d='M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.96.3 1.34.3C12 20 19 14 20 8h-3z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: sway 9s ease-in-out infinite reverse;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Refinamiento de la tarjeta para que resalte sobre el nuevo fondo */
+.workflow-card { z-index: 2; background: #ffffff; }

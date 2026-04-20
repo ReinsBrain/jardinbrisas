@@ -452,3 +452,49 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
 }
+
+
+
+/* ================= SMART NAVBAR ================= */
+/* Transiciones suaves para ocultar y mostrar */
+.navbar { top: 35px; transition: transform 0.4s ease, background 0.4s ease, top 0.4s ease, box-shadow 0.4s ease; }
+.navbar--scrolled { top: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+.navbar--hidden { transform: translateY(-100%); }
+
+/* ================= BOTÓN BACK TO TOP ================= */
+.back-to-top { position: fixed; bottom: 30px; left: 30px; background: var(--color-dark-swamp); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; }
+.back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { background: var(--color-leaf); transform: translateY(-5px); }
+
+/* ================= DARK MODE SWITCH ================= */
+.theme-switch-wrapper { display: flex; align-items: center; }
+.theme-switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--color-gray); transition: .4s; display: flex; justify-content: space-between; align-items: center; padding: 0 5px; }
+.slider.round { border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; z-index: 2; }
+input:checked + .slider { background-color: var(--color-leaf); }
+input:checked + .slider:before { transform: translateX(24px); }
+.sun { width: 14px; height: 14px; color: #f1c40f; z-index: 1; }
+.moon { width: 14px; height: 14px; color: #f1c40f; z-index: 1; }
+
+/* ================= DARK MODE THEME RULES ================= */
+[data-theme="dark"] {
+    --color-light: #111A16; /* Fondo gris oscuro pantano */
+    --color-text: #E8E8E8;
+    --color-gray: #A0AAB2;
+}
+[data-theme="dark"] body { background-color: #0A0F0C; }
+[data-theme="dark"] .bg-light { background-color: #111A16; }
+[data-theme="dark"] .workflow-card, [data-theme="dark"] .value-card, [data-theme="dark"] .tip-card, [data-theme="dark"] .contact-form-wrapper { background: #1A261F; color: var(--color-text); border: 1px solid rgba(46, 160, 83, 0.2); }
+[data-theme="dark"] .navbar { background: rgba(10, 15, 12, 0.95); }
+[data-theme="dark"] .dropdown-menu { background: #1A261F; border-top: 3px solid var(--color-leaf); }
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 { color: #E8D8A6; }
+[data-theme="dark"] .flow-icon { background: #1A261F; border-color: #2EA053; }
+[data-theme="dark"] .tip-card__body { background: #1A261F; }
+
+/* ================= ARREGLO WHATSAPP SVG ================= */
+.wa-icon-wrapper svg {
+    display: block; /* Fuerza a que el SVG ocupe su espacio */
+    fill: #ffffff !important;
+}

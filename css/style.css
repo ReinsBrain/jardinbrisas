@@ -354,3 +354,101 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
 
 /* Refinamiento de la tarjeta para que resalte sobre el nuevo fondo */
 .workflow-card { z-index: 2; background: #ffffff; }
+
+
+/* ================= FONDOS: SILUETAS Y ELEMENTOS VIVOS ================= */
+.bg-silhouettes {
+    position: relative;
+    z-index: 1;
+}
+
+/* Silueta de helecho/planta en la esquina inferior izquierda */
+.bg-silhouettes::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -50px;
+    width: 250px;
+    height: 250px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231A3626' opacity='0.04'%3E%3Cpath d='M21 3C14 3 8 7 3 21c3-6 8-10 14-11v-4c0-2 2-3 4-3z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -1;
+    pointer-events: none;
+    animation: sway 8s ease-in-out infinite;
+}
+
+/* Contenedor para hojas flotantes (Blog) */
+.bg-floating-elements { position: relative; overflow: hidden; }
+.float-icon { position: absolute; font-size: 3rem; opacity: 0.1; filter: grayscale(100%) sepia(100%) hue-rotate(80deg); z-index: 0; pointer-events: none; }
+.fi-1 { top: 10%; left: 5%; animation: floatUp 15s linear infinite; }
+.fi-2 { top: 50%; right: 5%; animation: floatUp 20s linear infinite 5s; font-size: 4rem; }
+.fi-3 { bottom: 10%; left: 15%; animation: floatUp 18s linear infinite 2s; font-size: 2.5rem; }
+
+@keyframes floatUp {
+    0% { transform: translateY(100px) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.15; }
+    80% { opacity: 0.15; }
+    100% { transform: translateY(-300px) rotate(180deg); opacity: 0; }
+}
+
+/* Forzar que el contenido del grid esté por encima de los fondos flotantes */
+.tips__grid, .section-header { position: relative; z-index: 2; }
+
+/* ================= ANIMACIÓN BOTÓN WHATSAPP ================= */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    height: 60px;
+    width: 60px; /* Tamaño inicial */
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    text-decoration: none;
+    overflow: hidden; /* Oculta el texto inicialmente */
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s;
+}
+
+.wa-icon-wrapper {
+    min-width: 60px; /* Mantiene el icono en su lugar */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: bounce-wa-icon 2s infinite ease-in-out;
+}
+
+.wa-text {
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    padding-right: 20px;
+}
+
+/* Efecto HOVER: Se expande el botón y revela el texto */
+.whatsapp-float:hover {
+    width: 250px; /* Ancho expandido */
+    background-color: #1ebe5d;
+}
+
+.whatsapp-float:hover .wa-icon-wrapper {
+    animation: none; /* Detiene el salto al hacer hover */
+}
+
+.whatsapp-float:hover .wa-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes bounce-wa-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}

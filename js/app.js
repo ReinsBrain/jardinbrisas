@@ -135,4 +135,83 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarousel();
     initScrollAnimations();
     initPreloader();
+
+
+
+    // --- LÓGICA DE LA FLECHA HACIA ARRIBA ---
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 400) {
+            backToTopBtn?.classList.add('show');
+        } else {
+            backToTopBtn?.classList.remove('show');
+        }
+    });
+
+    backToTopBtn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // --- LÓGICA DEL MODO OSCURO ---
+    // Usamos delegación de eventos porque el navbar carga de forma asíncrona
+    document.body.addEventListener('click', (e) => {
+        const themeBtn = e.target.closest('#theme-toggle');
+        if (!themeBtn) return; // Si no hizo clic en el botón, ignora
+        
+        const body = document.body;
+        const iconSun = document.getElementById('icon-sun');
+        const iconMoon = document.getElementById('icon-moon');
+        
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            iconSun.style.display = 'block';
+            iconMoon.style.display = 'none';
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            iconSun.style.display = 'none';
+            iconMoon.style.display = 'block';
+            iconMoon.style.color = '#E8D8A6'; // Ajuste de color del icono en modo oscuro
+        }
+    });
+
+    // Revisar memoria al cargar la página
+    if(localStorage.getItem('theme') === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        // Pequeño delay para asegurar que el navbar ya se inyectó antes de cambiar el icono
+        setTimeout(() => {
+            const iconS = document.getElementById('icon-sun');
+            const iconM = document.getElementById('icon-moon');
+            if(iconS && iconM) {
+                iconS.style.display = 'none';
+                iconM.style.display = 'block';
+                iconM.style.color = '#E8D8A6';
+            }
+        }, 500);
+    }
+
+
+    // --- MOTOR DEL SMART NAVBAR ---
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        if (!navbar) return;
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 50) {
+            navbar.classList.add('navbar--scrolled');
+            // Si baja, oculta. Si sube, muestra.
+            if (currentScroll > lastScroll) {
+                navbar.classList.add('navbar--hidden'); 
+            } else {
+                navbar.classList.remove('navbar--hidden'); 
+            }
+        } else {
+            navbar.classList.remove('navbar--scrolled', 'navbar--hidden');
+        }
+        lastScroll = currentScroll;
+    });
+
 });

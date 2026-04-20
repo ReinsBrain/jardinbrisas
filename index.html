@@ -16,46 +16,69 @@
     <header id="header-container"></header>
 
     <main>
-        <section class="workflow section bg-light">
-    <div class="container">
-        <div class="section-header text-center reveal">
-            <h2>Nuestra Metodología</h2>
-            <p>Un flujo de trabajo diseñado para garantizar resultados estéticos y duraderos, sin improvisaciones.</p>
-        </div>
-        <div class="workflow-card">
-                <div class="workflow-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf)" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <section class="workflow section bg-light" style="padding-top: 2rem;">
+            <div class="container">
+                <div class="section-header text-center reveal mb-4">
+                    <h2>Nuestra Metodología</h2>
+                    <p>Un flujo de trabajo diseñado para resultados estéticos y duraderos.</p>
                 </div>
-                <div class="workflow-step">Paso 1</div>
-                <h3>Visita y Diagnóstico</h3>
-                <p>Evaluamos el espacio con honestidad, revisando el tipo de suelo y las condiciones para darte un panorama real del trabajo.</p>
-            </div>
-            <div class="workflow-card">
-                <div class="workflow-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf)" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                
+                <div class="flowchart reveal">
+                    <div class="flow-step">
+                        <div class="flow-icon">
+                            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf)" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </div>
+                        <h3>1. Visita y Diagnóstico</h3>
+                        <p>Evaluamos tu jardín in situ, analizando suelo y clima.</p>
+                    </div>
+
+                    <div class="flow-connector">
+                        <svg viewBox="0 0 100 50" preserveAspectRatio="none">
+                            <path d="M0,25 C30,0 70,0 95,25" fill="none" stroke="var(--color-leaf)" stroke-width="2" stroke-dasharray="5,5" class="dashed-line"/>
+                            <polygon points="100,25 90,20 90,30" fill="var(--color-leaf)"/>
+                        </svg>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">
+                            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf)" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path></svg>
+                        </div>
+                        <h3>2. Propuesta</h3>
+                        <p>Plan de acción y especies ideales para la brisa marina.</p>
+                    </div>
+
+                    <div class="flow-connector">
+                        <svg viewBox="0 0 100 50" preserveAspectRatio="none">
+                            <path d="M0,25 C30,50 70,50 95,25" fill="none" stroke="var(--color-leaf)" stroke-width="2" stroke-dasharray="5,5" class="dashed-line"/>
+                            <polygon points="100,25 90,20 90,30" fill="var(--color-leaf)"/>
+                        </svg>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">
+                            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf)" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                        </div>
+                        <h3>3. Aprobación</h3>
+                        <p>Ajustes finales de diseño 100% en conjunto contigo.</p>
+                    </div>
+
+                    <div class="flow-connector">
+                        <svg viewBox="0 0 100 50" preserveAspectRatio="none">
+                            <path d="M0,25 C30,0 70,0 95,25" fill="none" stroke="var(--color-leaf)" stroke-width="2" stroke-dasharray="5,5" class="dashed-line"/>
+                            <polygon points="100,25 90,20 90,30" fill="var(--color-leaf)"/>
+                        </svg>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flow-icon">
+                            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                        <h3>4. Ejecución</h3>
+                        <p>Manos a la tierra con limpieza y precisión absoluta.</p>
+                    </div>
                 </div>
-                <div class="workflow-step">Paso 2</div>
-                <h3>Propuesta Transparente</h3>
-                <p>Armamos un plan de acción y un presupuesto justo, recomendando especies que resistan la brisa de nuestra zona costera.</p>
             </div>
-            <div class="workflow-card">
-                <div class="workflow-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf)" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
-                </div>
-                <div class="workflow-step">Paso 3</div>
-                <h3>Aprobación Conjunta</h3>
-                <p>Revisamos los detalles contigo. No avanzamos hasta que estés 100% conforme con los materiales y el diseño propuesto.</p>
-            </div>
-            <div class="workflow-card">
-                <div class="workflow-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                </div>
-                <div class="workflow-step">Paso 4</div>
-                <h3>Trabajo Dedicado</h3>
-                <p>Manos a la tierra. Nos enfocamos en la limpieza, el detalle y el esfuerzo físico para que tu jardín respire nueva vida.</p>
-            </div>
-    </div>
-</section>
+        </section>
 
         <section id="experiencia" class="about section container reveal">
             <div class="about__grid">

@@ -198,12 +198,93 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
 .dropdown-menu li:last-child a { border-bottom: none; }
 .dropdown-menu li a:hover { background: var(--color-light); color: var(--color-leaf); padding-left: 2rem; }
 
-/* ================= METODOLOGÍA (Workflow) ================= */
-.workflow__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: 3rem; }
-.workflow-card { background: white; padding: 2.5rem 1.5rem; border-radius: 15px; text-align: center; position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: var(--transition-smooth); border: 1px solid #f0f0f0; }
-.workflow-card:hover { transform: translateY(-10px); border-color: var(--color-leaf); box-shadow: 0 15px 30px rgba(46, 160, 83, 0.1); }
-.workflow-icon { font-size: 3rem; margin-bottom: 1rem; }
-.workflow-step { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--color-leaf); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px; }
+/* ================= REDUCCIÓN DE ESPACIOS BLANCOS ================= */
+.section { padding: 3.5rem 0; } /* Reducido de 5rem a 3.5rem para juntar el contenido */
+
+/* ================= DIAGRAMA DE FLUJO (Metodología) ================= */
+.flowchart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    margin-top: 2rem;
+    z-index: 2;
+}
+
+.flow-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 10px;
+}
+
+.flow-icon {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 1.5rem auto;
+    box-shadow: 0 10px 25px rgba(26, 54, 38, 0.1);
+    border: 3px solid var(--color-light);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+    position: relative;
+    z-index: 5;
+}
+
+.flow-step:hover .flow-icon {
+    transform: translateY(-10px) scale(1.05);
+    border-color: var(--color-leaf);
+}
+
+.flow-step h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.flow-step p { font-size: 0.9rem; color: var(--color-gray); line-height: 1.4; }
+
+/* Conectores SVG */
+.flow-connector {
+    flex: 0.5;
+    position: relative;
+    height: 80px; /* Misma altura que el icono para centrar verticalmente */
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.flow-connector svg {
+    width: 100%;
+    height: 50px;
+    overflow: visible;
+}
+
+/* Animación de flujo continuo en las líneas */
+.dashed-line {
+    stroke-dashoffset: 100;
+    animation: dash-flow 3s linear infinite;
+}
+
+@keyframes dash-flow {
+    to { stroke-dashoffset: 0; }
+}
+
+/* ================= RESPONSIVE DIAGRAMA (Mobile First estricto) ================= */
+@media (max-width: 900px) {
+    .flowchart {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    .flow-step { width: 100%; max-width: 300px; }
+    
+    /* En móviles, las flechas horizontales no sirven, las rotamos hacia abajo */
+    .flow-connector {
+        height: 40px;
+        flex: none;
+        width: 40px;
+        transform: rotate(90deg);
+    }
+}
 
 /* ================= WHATSAPP FLOTANTE ================= */
 .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; transition: var(--transition-fast); animation: bounce-wa 2s infinite ease-in-out; }

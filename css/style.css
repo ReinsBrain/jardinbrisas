@@ -460,16 +460,74 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
 .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .back-to-top:hover { background: var(--color-leaf); transform: translateY(-5px); }
 
-/* ================= WHATSAPP EXPANSIBLE CON TEXTO ================= */
-.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; height: 60px; width: 60px; border-radius: 30px; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; text-decoration: none; overflow: hidden; transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s; }
-.wa-icon-wrapper { min-width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; animation: pulse-wa 2s infinite ease-in-out; }
-.wa-text { color: white; font-weight: bold; font-size: 1rem; white-space: nowrap; opacity: 0; transform: translateX(15px); transition: all 0.4s ease; padding-right: 25px; }
+/* ================= WHATSAPP EXPANSIBLE (SIN OVERLAP) ================= */
+.whatsapp-float { 
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    background-color: #25d366; 
+    height: 60px; 
+    width: 60px; /* Tamaño inicial */
+    border-radius: 30px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; /* Fuerza anclaje a la izquierda */
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); 
+    z-index: 1000; 
+    text-decoration: none; 
+    overflow: hidden; 
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s; 
+}
 
-.whatsapp-float:hover { width: 260px; background-color: #1ebe5d; }
-.whatsapp-float:hover .wa-icon-wrapper { animation: none; }
-.whatsapp-float:hover .wa-text { opacity: 1; transform: translateX(0); }
+.wa-icon-wrapper { 
+    min-width: 60px; 
+    width: 60px; 
+    height: 60px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    animation: pulse-wa 2s infinite ease-in-out; 
+    z-index: 2; /* Logo siempre arriba del texto */
+    position: relative;
+}
 
-@keyframes pulse-wa { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.wa-icon-wrapper img { 
+    width: 35px; 
+    height: 35px; 
+    object-fit: contain; 
+}
+
+.wa-text { 
+    color: white; 
+    font-weight: bold; 
+    font-size: 1rem; 
+    white-space: nowrap; 
+    opacity: 0; 
+    transform: translateX(-15px); /* Escondido ligeramente a la izquierda */
+    transition: all 0.4s ease; 
+    padding-right: 20px; 
+    z-index: 1; /* Texto por debajo del logo */
+}
+
+/* Estado Hover (Expansión) */
+.whatsapp-float:hover { 
+    width: 250px; 
+    background-color: #1ebe5d; 
+}
+
+.whatsapp-float:hover .wa-icon-wrapper { 
+    animation: none; 
+}
+
+.whatsapp-float:hover .wa-text { 
+    opacity: 1; 
+    transform: translateX(0); /* Se desliza a su posición natural a la derecha */
+}
+
+@keyframes pulse-wa { 
+    0%, 100% { transform: scale(1); } 
+    50% { transform: scale(1.1); } 
+}
 
 /* ================= BOTÓN CLARO/OSCURO ================= */
 .theme-btn { background: transparent; border: none; cursor: pointer; padding: 5px; outline: none; transition: transform 0.3s ease; display: flex; justify-content: center; align-items: center; }
@@ -534,3 +592,247 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
     background-color: #000000 !important;
 }
 
+
+
+
+/* ================= NOSOTROS: HERO ================= */
+.about-page-hero {
+    background: linear-gradient(rgba(26, 54, 38, 0.8), rgba(26, 54, 38, 0.9)), 
+                url('https://images.unsplash.com/photo-1558904541-efa843a96f0f?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 12rem 0 6rem 0;
+    color: white;
+    text-align: center;
+}
+.about-page-hero h1 { color: white; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+
+/* ================= NOSOTROS: HISTORIA ================= */
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.story-content p { margin-bottom: 1.2rem; font-size: 1.05rem; }
+.story-image { position: relative; }
+.rounded-img { width: 100%; border-radius: 20px; object-fit: cover; height: 500px; }
+.shadow-lg { box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+
+/* Sello de años de experiencia sobre la imagen */
+.experience-badge { position: absolute; bottom: -20px; right: -20px; background: var(--color-leaf); color: white; padding: 2rem; border-radius: 50%; width: 140px; height: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: 0 10px 20px rgba(46, 160, 83, 0.3); border: 5px solid white; }
+.experience-badge .years { font-size: 3rem; font-weight: bold; line-height: 1; }
+.experience-badge .text { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+/* ================= NOSOTROS: MISIÓN Y VISIÓN ================= */
+.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.mv-card { background: white; padding: 3rem; border-radius: 15px; border-top: 5px solid var(--color-leaf); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+.mv-card:hover { transform: translateY(-5px); }
+.mv-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
+
+/* ================= NOSOTROS: MÉTODOS DE PAGO ================= */
+.payment-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+.pay-badge { padding: 1rem 2rem; border-radius: 12px; font-weight: 900; font-size: 1.5rem; color: white; display: flex; align-items: center; justify-content: center; min-width: 150px; transition: transform 0.3s ease, box-shadow 0.3s ease; letter-spacing: 1px; }
+.pay-badge:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+
+/* Colores Oficiales de Bancos Perú */
+.yape { background-color: #742384; font-family: 'Arial Rounded MT Bold', Arial, sans-serif; text-transform: lowercase; font-style: italic; }
+.plin { background-color: #00D8C8; font-family: 'Arial Rounded MT Bold', Arial, sans-serif; text-transform: lowercase; }
+.bcp { background-color: #002A8D; color: #FF7B00; font-family: Arial, sans-serif; letter-spacing: -1px; }
+.bcp span { color: white; }
+.bbva { background-color: #072146; font-family: Arial, sans-serif; }
+.interbank { background-color: #00A443; font-family: Arial, sans-serif; }
+
+/* ================= DARK MODE EXTRAS ================= */
+[data-theme="dark"] .mv-card { background: #1A261F; border-color: var(--color-leaf); }
+[data-theme="dark"] .experience-badge { border-color: #121A16; }
+[data-theme="dark"] .pay-badge { box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+
+/* ================= RESPONSIVE NOSOTROS ================= */
+@media (max-width: 900px) {
+    .story-grid, .mv-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .rounded-img { height: 350px; }
+    .experience-badge { width: 100px; height: 100px; padding: 1rem; right: 10px; bottom: -10px; }
+    .experience-badge .years { font-size: 2rem; }
+    .experience-badge .text { font-size: 0.6rem; }
+}
+
+/* ================= NOSOTROS: ALTO NIVEL ================= */
+.about-hero-pro {
+    background: linear-gradient(rgba(26, 54, 38, 0.9), rgba(26, 54, 38, 0.9)), 
+                url('https://images.unsplash.com/photo-1558904541-efa843a96f0f?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 14rem 0 8rem 0;
+    color: white;
+    text-align: center;
+}
+
+.badge-pro {
+    display: inline-block;
+    border: 1px solid var(--color-leaf);
+    color: var(--color-leaf);
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+/* El Mensaje Espiritual (Sutil para los 'despiertos') */
+.spiritual-nod {
+    margin-top: 2rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--color-leaf);
+    font-style: italic;
+    color: var(--color-dark-swamp);
+    opacity: 0.8;
+}
+
+/* Sello de Experiencia Profesional */
+.story-image-pro { position: relative; }
+.story-image-pro img { width: 100%; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+.exp-tag {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: var(--color-dark-swamp);
+    color: white;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-radius: 4px;
+}
+.exp-tag .number { display: block; font-size: 2.5rem; font-weight: 800; line-height: 1; color: var(--color-leaf); }
+.exp-tag .label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Grid de Filosofía (Misión/Visión) */
+.mv-grid-pro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.phi-card h3 { color: var(--color-leaf); font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+
+/* ================= GRID DE PAGOS (Activos PNG) ================= */
+.payment-assets-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    filter: grayscale(100%); /* Efecto profesional: logos en gris que cobran color al pasar el mouse */
+    transition: 0.5s;
+    opacity: 0.7;
+}
+.payment-assets-grid:hover { filter: grayscale(0%); opacity: 1; }
+
+.asset-slot img {
+    max-width: 140px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Ajustes Dark Mode */
+[data-theme="dark"] .spiritual-nod { color: var(--color-sand); border-left-color: var(--color-sand); }
+[data-theme="dark"] .phi-card { background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 4px; }
+
+/* Limpieza de la sección de pagos para tus PNG */
+.payment-assets-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.asset-slot {
+    width: 150px; /* Espacio para el logo */
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Aquí irán tus img/metodo-x.png */
+}
+
+/* El mensaje espiritual ahora se ve más elegante */
+.spiritual-nod {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(46, 160, 83, 0.05);
+    border-left: 3px solid var(--color-leaf);
+    border-radius: 0 10px 10px 0;
+}
+
+/* ================= NOSOTROS: REMASTERIZADO ================= */
+.about-page-hero {
+    background: linear-gradient(rgba(26, 54, 38, 0.85), rgba(26, 54, 38, 0.9)), 
+                url('https://images.unsplash.com/photo-1558904541-efa843a96f0f?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 14rem 0 8rem 0;
+    color: white;
+    text-align: center;
+}
+
+.badge-pro {
+    display: inline-block;
+    border-left: 3px solid var(--color-leaf);
+    padding-left: 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--color-leaf);
+}
+
+.spiritual-message {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background: rgba(232, 216, 166, 0.1); /* Sutil tono arena */
+    border-left: 2px solid var(--color-sand);
+    font-style: italic;
+    color: var(--color-dark-swamp);
+}
+
+.story-image-pro { position: relative; }
+.story-image-pro img { width: 100%; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+.exp-tag {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--color-dark-swamp);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 4px;
+}
+.exp-tag .number { display: block; font-size: 2.5rem; font-weight: 800; color: var(--color-leaf); }
+.exp-tag .label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Filosofía Pro */
+.mv-card-pro { background: white; padding: 3rem; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; }
+.mv-icon-pro { color: var(--color-leaf); margin-bottom: 1.5rem; }
+
+/* Grid de Activos de Pago */
+.payment-assets-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 3.5rem;
+}
+
+.asset-slot img {
+    max-width: 130px;
+    height: auto;
+    filter: grayscale(100%) opacity(0.6);
+    transition: 0.4s ease;
+}
+
+.asset-slot img:hover {
+    filter: grayscale(0%) opacity(1);
+}
+
+/* Dark Mode */
+[data-theme="dark"] .mv-card-pro { background: #1A261F; }
+[data-theme="dark"] .spiritual-message { color: var(--color-sand); }

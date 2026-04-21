@@ -488,20 +488,11 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
 
 
 
-/* FORZAR LA APARICIÓN DEL LOGO DE WHATSAPP */
-.wa-icon-wrapper svg {
-    display: block !important;
-    width: 35px !important;
-    height: 35px !important;
-    fill: #ffffff !important; /* Fuerza el color blanco */
-    z-index: 10;
-}
 
 /* ANIMACIÓN DEL SMART NAVBAR */
 .navbar { transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease !important; }
 .navbar--hidden { transform: translateY(-100%) !important; }
 .navbar--scrolled { background: rgba(255,255,255,0.98) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important; }
-
 
 
 
@@ -542,3 +533,4 @@ p { margin-bottom: 1rem; color: var(--color-gray); }
 [data-theme="dark"] .topbar {
     background-color: #000000 !important;
 }
+

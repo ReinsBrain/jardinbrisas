@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformaciones | Jardín Brisas - Portafolio</title>
+    <meta name="description" content="Nuestros trabajos de jardinería y paisajismo en Brisas de Villa. El antes y después de nuestro compromiso.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/transformaciones.css">
+</head>
+<body>
+    <div id="preloader"><div class="loader-leaf"></div></div>
+
+    <header id="header-container"></header>
+
+    <main>
+        <section class="gallery-hero">
+            <div class="container reveal">
+                <h1>Resultados <span>Reales.</span></h1>
+                <p>No vendemos promesas, demostramos nuestro trabajo en el terreno.</p>
+            </div>
+        </section>
+
+        <section class="gallery-controls" id="smart-controls">
+            <div class="container">
+                <div class="controls-wrapper reveal">
+                    <div class="search-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="search-input" placeholder="Buscar trabajo (ej. grass, poda...)">
+                    </div>
+                    <div class="filter-box">
+                        <select id="category-filter">
+                            <option value="all">Todos los Servicios</option>
+                            <option value="poda">Poda y Perfilado</option>
+                            <option value="grass">Corte de Grass</option>
+                            <option value="integral">Mantenimiento Integral</option>
+                        </select>
+                        <select id="date-sort">
+                            <option value="newest">Más recientes primero</option>
+                            <option value="oldest">Más antiguos primero</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-feed section bg-light bg-floating-elements bg-silhouettes">
+            <div class="float-icon fi-1"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></div>
+            <div class="float-icon fi-2"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
+            <div class="float-icon fi-4"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+
+            <div class="container" style="position: relative; z-index: 5;">
+                <div id="projects-container" class="projects-grid">
+                    </div>
+                
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--color-gray)" stroke-width="1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <h3>No encontramos proyectos con esos filtros</h3>
+                    <p>Intenta buscar con otros términos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+    
+    <script src="js/app.js"></script>
+    <script src="js/transformaciones.js"></script>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Volver arriba">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+</body>
+</html>
